@@ -122,15 +122,4 @@ public class ImdbDAO {
 	}
 
 
-	private static byte [] loadPic(String filename) {
-        Path p = FileSystems.getDefault().getPath(filename);
-        byte [] fileData = null;
-        try {
-			fileData = Files.readAllBytes(p);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return fileData;
-	}
-
 }
