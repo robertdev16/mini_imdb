@@ -3,6 +3,7 @@ package mini_imdb.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,11 +22,48 @@ public class User {
 	private String loginName;
 	private String password;
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", cascade=CascadeType.ALL, orphanRemoval = true)
 	private List<Comment> commentList = new ArrayList<Comment>();
 	
 	public User() {
 		super();
 	}
 
+	public User(String loginName, String password) {
+		super();
+		this.loginName = loginName;
+		this.password = password;
+	}
+
+
+	public String getLoginName() {
+		return loginName;
+	}
+
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void addComment(Comment c){
+		commentList.add(c);
+		c.setUser(this);
+	}
+
+	public void removeComment(Comment c){
+		c.setUser(null);
+		commentList.remove(c);
+	}
+	
 }

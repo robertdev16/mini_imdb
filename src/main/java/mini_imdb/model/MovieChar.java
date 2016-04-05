@@ -31,4 +31,39 @@ public class MovieChar {
 		super();
 	}
 
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public Movie getMovie() {
+		return movie;
+	}
+
+
+	public void setMovie(Movie movie) {
+		this.movie = movie;
+	}
+
+
+	public Actor getActor() {
+		return actor;
+	}
+
+
+	public void setActor(Actor actor) {
+		this.actor = actor;
+	}
+
+
+	public int getCharId() {
+		return charId;
+	}
+
 }

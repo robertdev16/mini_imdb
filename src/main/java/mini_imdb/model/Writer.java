@@ -21,4 +21,23 @@ public class Writer extends Artist {
 		super();
 	}
 
+	public Writer(String name, String birthPlace, String biography, String birthDate) {
+		super();
+		this.name = name;
+		this.birthPlace = birthPlace;
+		this.biography = biography;
+		setBirthDate(birthDate);
+	}
+	
+	
+	public void addMovie(Movie m){
+		movieList.add(m);
+		m.addWriter(this);
+	}
+
+	public void removeMovie(Movie m){
+		m.removeWriter(this);
+		movieList.remove(m);
+	}
+	
 }

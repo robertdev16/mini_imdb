@@ -21,4 +21,23 @@ public class Director extends Artist {
 		super();
 	}
 
+	public Director(String name, String birthPlace, String biography, String birthDate) {
+		super();
+		this.name = name;
+		this.birthPlace = birthPlace;
+		this.biography = biography;
+		setBirthDate(birthDate);
+	}
+	
+	
+	public void addMovie(Movie m){
+		movieList.add(m);
+		m.addDirector(this);
+	}
+
+	public void removeMovie(Movie m){
+		m.removeDirector(this);
+		movieList.remove(m);
+	}
+	
 }
