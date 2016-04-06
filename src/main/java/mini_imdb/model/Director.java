@@ -21,12 +21,11 @@ public class Director extends Artist {
 		super();
 	}
 
-	public Director(String name, String birthPlace, String biography, String birthDate) {
+	public Director(String name, String birthDate, String birthPlace) {
 		super();
 		this.name = name;
-		this.birthPlace = birthPlace;
-		this.biography = biography;
 		setBirthDate(birthDate);
+		this.birthPlace = birthPlace;
 	}
 	
 	

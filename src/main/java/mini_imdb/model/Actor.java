@@ -19,12 +19,11 @@ public class Actor extends Artist {
 		super();
 	}
 
-	public Actor(String name, String birthPlace, String biography, String birthDate) {
+	public Actor(String name, String birthDate, String birthPlace) {
 		super();
 		this.name = name;
-		this.birthPlace = birthPlace;
-		this.biography = biography;
 		setBirthDate(birthDate);
+		this.birthPlace = birthPlace;
 	}
 	
 	public void addMovieChar(MovieChar mc){

@@ -21,12 +21,11 @@ public class Writer extends Artist {
 		super();
 	}
 
-	public Writer(String name, String birthPlace, String biography, String birthDate) {
+	public Writer(String name, String birthDate, String birthPlace) {
 		super();
 		this.name = name;
-		this.birthPlace = birthPlace;
-		this.biography = biography;
 		setBirthDate(birthDate);
+		this.birthPlace = birthPlace;
 	}
 	
 	
