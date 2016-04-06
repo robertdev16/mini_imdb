@@ -15,6 +15,8 @@ import org.slf4j.LoggerFactory;
 import mini_imdb.dao.ImdbDAO;
 import mini_imdb.model.Actor;
 import mini_imdb.model.Director;
+import mini_imdb.model.Genre;
+import mini_imdb.model.Movie;
 import mini_imdb.model.Writer;
 
 public class App {
@@ -91,7 +93,12 @@ public class App {
 		directorTimur.setBiography("Timur Bekmambetov is a Russian-Kazakh film director known for vampire franchise Night Watch (2004) and Day Watch (2006).");
 		directorTimur.getPhotoList().add(readPic("Timur Bekmambetov.jpg"));
 		
-		
+		Movie movieSmith = new Movie("Mr. & Mrs. Smith", 2005, 120, 6.5f);
+		movieSmith.setBrief("A bored married couple is surprised to learn that they are both assassins hired by competing agencies to kill each other.");
+		movieSmith.setPoster(readPic("Mr. & Mrs. Smith.jpg"));
+		movieSmith.getGenreSet().add(Genre.Action);
+		movieSmith.getGenreSet().add(Genre.Comedy);
+		movieSmith.getGenreSet().add(Genre.Crime);
 		
 		
 		emf.close();

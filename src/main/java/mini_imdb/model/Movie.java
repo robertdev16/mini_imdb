@@ -56,12 +56,11 @@ public class Movie {
 		super();
 	}
 
-	public Movie(String title, int year, int runtime, String brief, float rating) {
+	public Movie(String title, int year, int runtime, float rating) {
 		super();
 		this.title = title;
 		this.year = year;
 		this.runtime = runtime;
-		this.brief = brief;
 		this.rating = rating;
 	}
 
