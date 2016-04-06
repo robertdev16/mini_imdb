@@ -58,11 +58,9 @@ public class User {
 
 	public void addComment(Comment c){
 		commentList.add(c);
-		c.setUser(this);
 	}
 
 	public void removeComment(Comment c){
-		c.setUser(null);
 		commentList.remove(c);
 	}
 	

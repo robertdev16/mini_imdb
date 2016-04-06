@@ -146,21 +146,17 @@ public class Movie {
 	
 	public void addMovieChar(MovieChar mc){
 		movieCharList.add(mc);
-		mc.setMovie(this);
 	}
 
 	public void removeMovieChar(MovieChar mc){
-		mc.setMovie(null);
 		movieCharList.remove(mc);
 	}
 	
 	public void addComment(Comment c){
 		commentList.add(c);
-		c.setMovie(this);
 	}
 
 	public void removeComment(Comment c){
-		c.setMovie(null);
 		commentList.remove(c);
 	}
 }

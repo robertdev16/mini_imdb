@@ -31,11 +31,9 @@ public class Director extends Artist {
 	
 	public void addMovie(Movie m){
 		movieList.add(m);
-		m.addDirector(this);
 	}
 
 	public void removeMovie(Movie m){
-		m.removeDirector(this);
 		movieList.remove(m);
 	}
 	

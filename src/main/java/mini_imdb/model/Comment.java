@@ -40,20 +40,21 @@ public class Comment {
 	private float rating;
 	
 	private static DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, Locale.US);
+	private static DateFormat tf = DateFormat.getTimeInstance(DateFormat.SHORT,	Locale.US);
 	
 	public Comment() {
 		super();
 	}
 	
-	public Comment(User user, Movie movie, String date, String time, String title, String content, float rating) {
+	public Comment(User user, Movie movie, String date, String time, float rating, String title, String content) {
 		super();
-		this.user = user;
-		this.movie = movie;
+		setUser(user);
+		setMovie(movie);
 		setDate(date);
 		setTime(time);
+		this.rating = rating;
 		this.title = title;
 		this.content = content;
-		this.rating = rating;
 	}
 
 	public User getUser() {
@@ -62,6 +63,7 @@ public class Comment {
 
 	public void setUser(User user) {
 		this.user = user;
+		user.addComment(this);
 	}
 
 	public Movie getMovie() {
@@ -70,6 +72,7 @@ public class Comment {
 
 	public void setMovie(Movie movie) {
 		this.movie = movie;
+		movie.addComment(this);
 	}
 
 	public String getDate() {
@@ -85,12 +88,12 @@ public class Comment {
 	}
 
 	public String getTime() {
-		return df.format(time);
+		return tf.format(time);
 	}
 
 	public void setTime(String time) {
 		try {
-			this.time = df.parse(time);
+			this.time = tf.parse(time);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

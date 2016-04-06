@@ -14,9 +14,12 @@ import org.slf4j.LoggerFactory;
 
 import mini_imdb.dao.ImdbDAO;
 import mini_imdb.model.Actor;
+import mini_imdb.model.Comment;
 import mini_imdb.model.Director;
 import mini_imdb.model.Genre;
 import mini_imdb.model.Movie;
+import mini_imdb.model.MovieChar;
+import mini_imdb.model.User;
 import mini_imdb.model.Writer;
 
 public class App {
@@ -40,6 +43,10 @@ public class App {
 	public static void main(String[] args) {
 		imdbDAO = new ImdbDAO(emf);
 		
+		User userMike = new User("Mike", "passwordOfMike");
+		User userJack = new User("Jack", "passwordOfJack");
+		User userLucy = new User("Lucy", "passwordOfLucy");
+		
 		Actor actorAngelina = new Actor("Angelina Jolie", "06/04/1975", "Los Angeles, California, USA");
 		actorAngelina.setBiography("Angelina Jolie is an Oscar-winning actress who became popular after playing the title role in the 'Lara Croft' blockbuster movies, as well as Mr. & Mrs. Smith (2005), Wanted (2008), Salt (2010) and Maleficent (2014).");
 		actorAngelina.getPhotoList().add(readPic("Angelina Jolie_01.jpg"));
@@ -55,6 +62,24 @@ public class App {
 		directorDoug.setBiography("Doug Liman was born on July 24, 1965 in New York City, New York, USA. He is a producer and director, known for Edge of Tomorrow (2014), The Bourne Identity (2002) and The Bourne Ultimatum (2007).");
 		directorDoug.getPhotoList().add(readPic("Doug Liman.jpg"));
 		
+		Writer writerSimon = new Writer("Simon Kinberg", "08/02/1973", "London, England, UK");
+		writerSimon.setBiography("Simon Kinberg was born on August 2, 1973 in London, England. He is a producer and writer, known for X-Men: Days of Future Past (2014), Sherlock Holmes (2009) and X-Men: The Last Stand (2006).");
+		writerSimon.getPhotoList().add(readPic("Simon Kinberg.jpg"));
+		
+		Movie movieSmith = new Movie("Mr. & Mrs. Smith", 2005, 120, 6.5f);
+		movieSmith.setBrief("A bored married couple is surprised to learn that they are both assassins hired by competing agencies to kill each other.");
+		movieSmith.setPoster(readPic("Mr. & Mrs. Smith.jpg"));
+		movieSmith.getGenreSet().add(Genre.Action);
+		movieSmith.getGenreSet().add(Genre.Comedy);
+		movieSmith.getGenreSet().add(Genre.Crime);
+		movieSmith.addDirector(directorDoug);
+		movieSmith.addWriter(writerSimon);
+		new MovieChar("Jane Smith", movieSmith, actorAngelina);
+		new MovieChar("John Smith", movieSmith, actorBrad);
+		new Comment(userMike, movieSmith, "09/25/2006", "11:35 am", 7.0f, "Nice Surprise!", "I saw an advance screening of this movie tonight, and I must say it far exceeded my expectations!");
+		new Comment(userJack, movieSmith, "11/03/2006", "5:22 pm", 6.0f, "Complete Hollywood Rubbish", "Cheesy story, boring as-if action that's been done a million times, what else can I say, just lame Hollywood garbage at its finest.");
+
+
 		Writer writerDrew = new Writer("Drew Goddard", "02/26/1975", "Los Alamos, New Mexico, USA");
 		writerDrew.setBiography("Drew Goddard was raised in Los Alamos, New Mexico. He attended Los Alamos High School in Los Alamos, New Mexico and graduated in 1993. He then attended the University of Colorado, and worked as a production assistant in L.A. after graduation.");
 		writerDrew.getPhotoList().add(readPic("Drew Goddard.jpg"));
@@ -85,21 +110,34 @@ public class App {
 		actorMorgan.getPhotoList().add(readPic("Morgan Freeman_01.jpg"));
 		actorMorgan.getPhotoList().add(readPic("Morgan Freeman_02.jpg"));
 
-		Writer writerSimon = new Writer("Simon Kinberg", "08/02/1973", "London, England, UK");
-		writerSimon.setBiography("Simon Kinberg was born on August 2, 1973 in London, England. He is a producer and writer, known for X-Men: Days of Future Past (2014), Sherlock Holmes (2009) and X-Men: The Last Stand (2006).");
-		writerSimon.getPhotoList().add(readPic("Simon Kinberg.jpg"));
-		
 		Director directorTimur = new Director("Timur Bekmambetov", "06/25/1961", "Guryev, Kazakh SSR, USSR");
 		directorTimur.setBiography("Timur Bekmambetov is a Russian-Kazakh film director known for vampire franchise Night Watch (2004) and Day Watch (2006).");
 		directorTimur.getPhotoList().add(readPic("Timur Bekmambetov.jpg"));
 		
-		Movie movieSmith = new Movie("Mr. & Mrs. Smith", 2005, 120, 6.5f);
-		movieSmith.setBrief("A bored married couple is surprised to learn that they are both assassins hired by competing agencies to kill each other.");
-		movieSmith.setPoster(readPic("Mr. & Mrs. Smith.jpg"));
-		movieSmith.getGenreSet().add(Genre.Action);
-		movieSmith.getGenreSet().add(Genre.Comedy);
-		movieSmith.getGenreSet().add(Genre.Crime);
+
 		
+		
+		Movie movieWanted = new Movie("Wanted", 2008, 110, 6.7f);
+		movieSmith.setBrief("A frustrated office worker learns that he is the son of a professional assassin, and that he shares his father's superhuman killing abilities.");
+		movieSmith.setPoster(readPic("Wanted.jpg"));
+		movieSmith.getGenreSet().add(Genre.Action);
+		movieSmith.getGenreSet().add(Genre.Crime);
+		movieSmith.getGenreSet().add(Genre.Fantasy);
+		movieSmith.addDirector(directorTimur);
+//		movieSmith.addWriter(writerSimon);
+//		new MovieChar("Jane Smith", movieSmith, actorAngelina);
+//		new MovieChar("John Smith", movieSmith, actorBrad);
+//		new Comment(userMike, movieSmith, "09/25/2006", "11:35 am", 7.0f, "Nice Surprise!", "I saw an advance screening of this movie tonight, and I must say it far exceeded my expectations!");
+//		new Comment(userJack, movieSmith, "11/03/2006", "5:22 pm", 6.0f, "Complete Hollywood Rubbish", "Cheesy story, boring as-if action that's been done a million times, what else can I say, just lame Hollywood garbage at its finest.");
+
+		
+		
+		
+		imdbDAO.saveEntity(movieSmith);
+		imdbDAO.saveEntity(actorAngelina);
+		imdbDAO.saveEntity(actorBrad);
+		imdbDAO.saveEntity(userMike);
+		imdbDAO.saveEntity(userMike);		
 		
 		emf.close();
 

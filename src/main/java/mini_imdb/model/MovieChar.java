@@ -31,6 +31,13 @@ public class MovieChar {
 		super();
 	}
 
+	public MovieChar(String name, Movie movie, Actor actor) {
+		super();
+		this.name = name;
+		setMovie(movie);
+		setActor(actor);
+	}
+
 
 	public String getName() {
 		return name;
@@ -49,6 +56,7 @@ public class MovieChar {
 
 	public void setMovie(Movie movie) {
 		this.movie = movie;
+		movie.addMovieChar(this);
 	}
 
 
@@ -59,6 +67,7 @@ public class MovieChar {
 
 	public void setActor(Actor actor) {
 		this.actor = actor;
+		actor.addMovieChar(this);
 	}
 
 

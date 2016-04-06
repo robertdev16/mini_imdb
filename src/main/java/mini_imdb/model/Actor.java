@@ -28,11 +28,9 @@ public class Actor extends Artist {
 	
 	public void addMovieChar(MovieChar mc){
 		movieCharList.add(mc);
-		mc.setActor(this);
 	}
 
 	public void removeMovieChar(MovieChar mc){
-		mc.setActor(null);
 		movieCharList.remove(mc);
 	}
 	

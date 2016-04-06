@@ -31,11 +31,9 @@ public class Writer extends Artist {
 	
 	public void addMovie(Movie m){
 		movieList.add(m);
-		m.addWriter(this);
 	}
 
 	public void removeMovie(Movie m){
-		m.removeWriter(this);
 		movieList.remove(m);
 	}
 	
