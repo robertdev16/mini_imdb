@@ -126,5 +126,11 @@ public class Comment {
 	public int getCommentId() {
 		return commentId;
 	}
+
+	@Override
+	public String toString() {
+		return getTime() + "   " + getDate() + "   posted by " + getUser().getLoginName() + "\n"
+				+ "Title: " + title + "\n"+ content + "\n";
+	}
 	
 }

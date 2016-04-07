@@ -33,5 +33,20 @@ public class Actor extends Artist {
 	public void removeMovieChar(MovieChar mc){
 		movieCharList.remove(mc);
 	}
+
+	@Override
+	public String toString() {
+		StringBuffer sb = new StringBuffer(super.toString());
+		int num = movieCharList.size();
+		MovieChar mc;
+		for (int i=0; i<num; i++){
+			mc = movieCharList.get(i);
+			sb.append(" Movie: " + mc.getMovie().getTitle());
+			sb.append("  -  Character: " + mc.getName() + "\n");
+		}
+		
+		return sb.toString();
+	}
+	
 	
 }

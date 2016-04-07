@@ -159,4 +159,44 @@ public class Movie {
 	public void removeComment(Comment c){
 		commentList.remove(c);
 	}
+
+	@Override
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("movieId: " + movieId + "\n");
+		sb.append(title + " (" + year + ")\n");
+		sb.append("Genre: ");
+		for (Genre genre : genreSet){
+			sb.append(genre + " | ");
+		}
+		sb.append("\nRuntime: " + runtime + "\n");
+		sb.append("Rating: " + rating + "\n");
+		sb.append("Poster: " + title + ".jpg\n");
+		sb.append("Brief: " + brief + "\n");
+
+		sb.append("Director:\n");
+		for (Director d : directorList){
+			sb.append(d.getName() + ", " + d.getBirthDate() + ", " + d.getBirthPlace() + "\n");
+		}
+
+		sb.append("Writer:\n");
+		for (Writer w : writerList){
+			sb.append(w.getName() + ", " + w.getBirthDate() + ", " + w.getBirthPlace() + "\n");
+		}
+
+		sb.append("Cast:\n");
+		int num = movieCharList.size();
+		MovieChar mc;
+		for (int i=0; i<num; i++){
+			mc = movieCharList.get(i);
+			sb.append("Actor: " + mc.getActor().getName());
+			sb.append("  -  Character: " + mc.getName() + "\n");
+		}
+
+		sb.append("Comment:\n");
+		commentList.forEach(sb::append);
+		
+		return sb.toString();
+	}
+
 }

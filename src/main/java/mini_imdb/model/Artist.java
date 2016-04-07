@@ -92,6 +92,13 @@ public abstract class Artist {
 		return artistId;
 	}
 
+	@Override
+	public String toString() {
+		return "\n artistId: " + artistId +
+				"\n name: " + name + ", " + getBirthDate() + ", " + birthPlace +
+				"\n " + biography + "\n";
+	}
+
 	
 	
 }
