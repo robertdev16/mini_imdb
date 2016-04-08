@@ -38,10 +38,12 @@ public class Actor extends Artist {
 	public String toString() {
 		StringBuffer sb = new StringBuffer(super.toString());
 		int num = movieCharList.size();
+		if (num > 0)
+			sb.append("movies:\n");
 		MovieChar mc;
 		for (int i=0; i<num; i++){
 			mc = movieCharList.get(i);
-			sb.append(" Movie: " + mc.getMovie().getTitle());
+			sb.append("Movie: " + mc.getMovie().getTitle());
 			sb.append("  -  Character: " + mc.getName() + "\n");
 		}
 		

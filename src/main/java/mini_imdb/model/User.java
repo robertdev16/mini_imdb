@@ -63,5 +63,17 @@ public class User {
 	public void removeComment(Comment c){
 		commentList.remove(c);
 	}
+
+	@Override
+	public String toString() {
+		String str = "\n\nuserId: " + userId + ",   loginName: " + loginName + 
+					"   ==================================================================" +
+					"==================================================================\n";
+		StringBuffer sb = new StringBuffer(str);
+		if (commentList.size() > 0)
+			sb.append("Comment:\n");
+		commentList.forEach(sb::append);
+		return sb.toString();
+	}
 	
 }

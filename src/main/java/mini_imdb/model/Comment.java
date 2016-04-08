@@ -129,7 +129,8 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return getTime() + "   " + getDate() + "   posted by " + getUser().getLoginName() + "\n"
+		return getTime() + "   " + getDate() + "   movie: " + movie.getTitle() +
+				"   posted by " + user.getLoginName() + "\n"
 				+ "Title: " + title + "\n"+ content + "\n";
 	}
 	

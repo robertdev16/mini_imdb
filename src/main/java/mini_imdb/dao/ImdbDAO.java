@@ -115,8 +115,12 @@ public class ImdbDAO {
 			
 			tx.commit();
 			logger.info("Get Movie List: {} movies found!", (movies == null) ? 0 : movies.size());
-			if (movies != null)
-				movies.forEach(System.out::println);
+			if (movies != null){
+				for (Movie movie: movies){
+					System.out.println(movie.toString());
+					App.writePic(movie.getPoster(), movie.getTitle()+".jpg");
+				}
+			}
 		} catch (PersistenceException e) {
 			if (tx != null) {
 				System.out.println("Rolling back:" + e);
@@ -144,8 +148,8 @@ public class ImdbDAO {
 			tx.commit();
 			logger.info("findMovieByTitle: {}", (m == null) ? title +" Failed!" : m.getTitle() +" Found!");
 			if (m != null){
-				App.writePic(m.getPoster(), m.getTitle()+".jpg");
 				System.out.println(m.toString());
+				App.writePic(m.getPoster(), m.getTitle()+".jpg");
 			}
 		} catch (PersistenceException e) {
 			if (tx != null) {
@@ -173,8 +177,11 @@ public class ImdbDAO {
 			
 			tx.commit();
 			logger.info("findActorByName: {}", (actor == null) ? name +" Failed!" : actor.getName() +" Found!");
-			if (actor != null)
+			if (actor != null){
 				System.out.println(actor.toString());
+				for (int i=1; i<actor.getPhotoList().size()+1; i++)
+					App.writePic(actor.getPhotoList().get(i-1).getPhotoBytes(), actor.getName() + i + ".jpg");					
+			}
 		} catch (PersistenceException e) {
 			if (tx != null) {
 				System.out.println("Rolling back:" + e);
@@ -201,6 +208,8 @@ public class ImdbDAO {
 			
 			tx.commit();
 			logger.info("findUserByLoginName: {}", (user == null) ? loginName +" Failed!" : user.getLoginName() +" Found!");
+			if (user != null)
+				System.out.println(user.toString());
 		} catch (PersistenceException e) {
 			if (tx != null) {
 				System.out.println("Rolling back:" + e);

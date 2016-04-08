@@ -37,9 +37,8 @@ public abstract class Artist {
 	@Temporal(TemporalType.DATE)
 	protected Date birthDate;
 	
-	@Lob
 	@ElementCollection
-	protected List<byte[]> photoList = new ArrayList<byte[]>();
+	protected List<ArtistPhoto> photoList = new ArrayList<ArtistPhoto>();
 
 	private static DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, Locale.US);
 
@@ -80,11 +79,11 @@ public abstract class Artist {
 		}
 	}
 
-	public List<byte[]> getPhotoList() {
+	public List<ArtistPhoto> getPhotoList() {
 		return photoList;
 	}
 
-	public void setPhotoList(List<byte[]> photoList) {
+	public void setPhotoList(List<ArtistPhoto> photoList) {
 		this.photoList = photoList;
 	}
 
@@ -94,11 +93,15 @@ public abstract class Artist {
 
 	@Override
 	public String toString() {
-		return "\n artistId: " + artistId +
-				"\n name: " + name + ", " + getBirthDate() + ", " + birthPlace +
-				"\n " + biography + "\n";
-	}
+		String str= "\n\nartistId: " + artistId + "   ==================================================================" +
+				"==================================================================\n" +
+				"name: " + name + ", " + getBirthDate() + ", " + birthPlace +
+				"\n" + biography + "\nphotos:\n";
+		StringBuffer sb = new StringBuffer(str);
+		for (int i=1; i<photoList.size()+1; i++)
+			sb.append(name + i + ".jpg\n");
 
-	
+		return sb.toString();
+	}
 	
 }

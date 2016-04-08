@@ -12,6 +12,7 @@
 		<class>mini_imdb.model.Director</class>
 		<class>mini_imdb.model.Writer</class>
 		<class>mini_imdb.model.Actor</class>
+		<class>mini_imdb.model.ArtistPhoto</class>
 
 		<properties>
 			<property name="hibernate.connection.driver_class" value="org.gjt.mm.mysql.Driver" />

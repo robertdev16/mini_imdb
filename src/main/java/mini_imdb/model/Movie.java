@@ -163,12 +163,14 @@ public class Movie {
 	@Override
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-		sb.append("movieId: " + movieId + "\n");
+		sb.append("\n\nmovieId: " + movieId + "   ==================================================================");
+		sb.append("==================================================================\n");
 		sb.append(title + " (" + year + ")\n");
 		sb.append("Genre: ");
 		for (Genre genre : genreSet){
 			sb.append(genre + " | ");
 		}
+		sb.deleteCharAt(sb.length() - 2);
 		sb.append("\nRuntime: " + runtime + "\n");
 		sb.append("Rating: " + rating + "\n");
 		sb.append("Poster: " + title + ".jpg\n");
